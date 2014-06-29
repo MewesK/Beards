@@ -6,13 +6,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.mewk.beards.proxy.IProxy;
+import net.mewk.beards.reference.Reference;
 
-@Mod(modid = "Beards", name = "Beards", version = "1.7.2-0.1")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class Beards {
-    @Mod.Instance("Beards")
+    @Mod.Instance(Reference.MOD_ID)
     public static Beards instance;
 
-    @SidedProxy(clientSide = "net.mewk.beards.proxy.ClientProxy", serverSide = "net.mewk.beards.proxy.ServerProxy")
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static IProxy proxy;
 
     @Mod.EventHandler
