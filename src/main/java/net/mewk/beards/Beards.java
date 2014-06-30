@@ -4,6 +4,8 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.mewk.beards.item.ItemBeard;
+import net.mewk.beards.item.crafting.RecipesBeardDyes;
 import net.mewk.beards.proxy.IProxy;
 import net.mewk.beards.reference.Reference;
 import net.minecraft.init.Blocks;

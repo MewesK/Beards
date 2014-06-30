@@ -1,5 +1,6 @@
-package net.mewk.beards;
+package net.mewk.beards.item.crafting;
 
+import net.mewk.beards.item.ItemBeard;
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;

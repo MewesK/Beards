@@ -1,11 +1,11 @@
-package net.mewk.beards;
+package net.mewk.beards.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.mewk.beards.models.ModelBeardDiamond;
-import net.mewk.beards.models.ModelBeardGold;
-import net.mewk.beards.models.ModelBeardIron;
-import net.mewk.beards.models.ModelBeardLeather;
+import net.mewk.beards.client.models.ModelBeardDiamond;
+import net.mewk.beards.client.models.ModelBeardGold;
+import net.mewk.beards.client.models.ModelBeardIron;
+import net.mewk.beards.client.models.ModelBeardLeather;
 import net.mewk.beards.reference.Reference;
 import net.mewk.beards.util.LogHelper;
 import net.minecraft.client.model.ModelBiped;
