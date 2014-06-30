@@ -4,7 +4,6 @@ import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.RecipesArmorDyes;
 import net.minecraft.world.World;
@@ -24,9 +23,9 @@ public class RecipesBeardDyes extends RecipesArmorDyes {
 
             if (itemstack1 != null)
             {
-                if (itemstack1.getItem() instanceof ItemArmor)
+                if (itemstack1.getItem() instanceof ItemBeard)
                 {
-                    ItemArmor itemarmor = (ItemArmor)itemstack1.getItem();
+                    ItemBeard itemarmor = (ItemBeard)itemstack1.getItem();
 
                     if (itemstack != null)
                     {
@@ -59,7 +58,7 @@ public class RecipesBeardDyes extends RecipesArmorDyes {
         int[] aint = new int[3];
         int i = 0;
         int j = 0;
-        ItemArmor itemarmor = null;
+        ItemBeard itemarmor = null;
         int k;
         int l;
         float f;
@@ -72,9 +71,9 @@ public class RecipesBeardDyes extends RecipesArmorDyes {
 
             if (itemstack1 != null)
             {
-                if (itemstack1.getItem() instanceof ItemArmor)
+                if (itemstack1.getItem() instanceof ItemBeard)
                 {
-                    itemarmor = (ItemArmor)itemstack1.getItem();
+                    itemarmor = (ItemBeard)itemstack1.getItem();
 
                     if (itemstack != null)
                     {
