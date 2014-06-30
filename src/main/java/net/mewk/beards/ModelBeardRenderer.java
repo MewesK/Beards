@@ -8,11 +8,15 @@ import org.lwjgl.opengl.GL11;
 
 public class ModelBeardRenderer extends ModelRenderer {
 
-    private int color;
+    private final int color;
 
-    public ModelBeardRenderer(ModelBase par1ModelBase, int par2, int par3, int color) {
-        super(par1ModelBase, par2, par3);
+    public ModelBeardRenderer(ModelBase par1ModelBase, int color) {
+        super(par1ModelBase, 0, 0);
         this.color = color;
+        this.rotateAngleX = 0F;
+        this.rotateAngleY = 0F;
+        this.rotateAngleZ = 0F;
+        this.mirror = true;
     }
 
     @SideOnly(Side.CLIENT)

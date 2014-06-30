@@ -19,6 +19,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 
 public class ItemBeard extends ItemArmor {
+    public static final int TEXTURE_WIDTH = 64;
+    public static final int TEXTURE_HEIGHT = 32;
+
     public ItemBeard(ItemArmor.ArmorMaterial p_i45325_1_) {
         super(p_i45325_1_, 3, 0);
         setMaxStackSize(1);
@@ -32,13 +35,13 @@ public class ItemBeard extends ItemArmor {
             int color = itemStack.getItem().getColorFromItemStack(itemStack, 0);
             switch (getArmorMaterial()) {
                 case CLOTH:
-                    return new ModelBeardLeather(color);
+                    return new ModelBeardLeather(color, TEXTURE_WIDTH, TEXTURE_HEIGHT);
                 case IRON:
-                    return new ModelBeardIron(color);
+                    return new ModelBeardIron(color, TEXTURE_WIDTH, TEXTURE_HEIGHT);
                 case GOLD:
-                    return new ModelBeardGold(color);
+                    return new ModelBeardGold(color, TEXTURE_WIDTH, TEXTURE_HEIGHT);
                 case DIAMOND:
-                    return new ModelBeardDiamond(color);
+                    return new ModelBeardDiamond(color, TEXTURE_WIDTH, TEXTURE_HEIGHT);
             }
         }
         LogHelper.debug("getArmorModel with wrong slot or wrong material");
@@ -77,31 +80,31 @@ public class ItemBeard extends ItemArmor {
 
     @Override
     public void removeColor(ItemStack par1ItemStack) {
-        NBTTagCompound nbttagcompound = par1ItemStack.getTagCompound();
+        NBTTagCompound nbtTagCompoundRoot = par1ItemStack.getTagCompound();
 
-        if (nbttagcompound != null) {
-            NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
+        if (nbtTagCompoundRoot != null) {
+            NBTTagCompound nbtTagCompoundDisplay = nbtTagCompoundRoot.getCompoundTag("display");
 
-            if (nbttagcompound1.hasKey("color")) {
-                nbttagcompound1.removeTag("color");
+            if (nbtTagCompoundDisplay.hasKey("color")) {
+                nbtTagCompoundDisplay.removeTag("color");
             }
         }
     }
 
     @Override
     public boolean hasColor(ItemStack par1ItemStack) {
-        return !par1ItemStack.hasTagCompound() ? false : (!par1ItemStack.getTagCompound().hasKey("display", 10) ? false : par1ItemStack.getTagCompound().getCompoundTag("display").hasKey("color", 3));
+        return par1ItemStack.hasTagCompound() && (par1ItemStack.getTagCompound().hasKey("display", 10) && par1ItemStack.getTagCompound().getCompoundTag("display").hasKey("color", 3));
     }
 
     @Override
     public int getColor(ItemStack par1ItemStack) {
-        NBTTagCompound nbttagcompound = par1ItemStack.getTagCompound();
+        NBTTagCompound nbtTagCompoundRoot = par1ItemStack.getTagCompound();
 
-        if (nbttagcompound == null) {
+        if (nbtTagCompoundRoot == null) {
             return 10511680;
         } else {
-            NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
-            return nbttagcompound1 == null ? 10511680 : (nbttagcompound1.hasKey("color", 3) ? nbttagcompound1.getInteger("color") : 10511680);
+            NBTTagCompound nbtTagCompoundDisplay = nbtTagCompoundRoot.getCompoundTag("display");
+            return nbtTagCompoundDisplay == null || !nbtTagCompoundDisplay.hasKey("color", 3) ? 10511680 : nbtTagCompoundDisplay.getInteger("color");
         }
     }
 
@@ -120,19 +123,17 @@ public class ItemBeard extends ItemArmor {
 
     @Override
     public void func_82813_b(ItemStack par1ItemStack, int par2) {
-        NBTTagCompound nbttagcompound = par1ItemStack.getTagCompound();
-
-        if (nbttagcompound == null) {
-            nbttagcompound = new NBTTagCompound();
-            par1ItemStack.setTagCompound(nbttagcompound);
+        NBTTagCompound nbtTagCompoundRoot = par1ItemStack.getTagCompound();
+        if (nbtTagCompoundRoot == null) {
+            nbtTagCompoundRoot = new NBTTagCompound();
+            par1ItemStack.setTagCompound(nbtTagCompoundRoot);
         }
 
-        NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
-
-        if (!nbttagcompound.hasKey("display", 10)) {
-            nbttagcompound.setTag("display", nbttagcompound1);
+        NBTTagCompound nbtTagCompoundDisplay = nbtTagCompoundRoot.getCompoundTag("display");
+        if (!nbtTagCompoundRoot.hasKey("display", 10)) {
+            nbtTagCompoundRoot.setTag("display", nbtTagCompoundDisplay);
         }
 
-        nbttagcompound1.setInteger("color", par2);
+        nbtTagCompoundDisplay.setInteger("color", par2);
     }
 }
