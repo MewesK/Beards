@@ -28,16 +28,16 @@ public class ItemBeard extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) {
-        if (armorSlot == 0) {
+        if (armorSlot == 0 && itemStack != null) {
+            int color = itemStack.getItem().getColorFromItemStack(itemStack, 0);
             switch (getArmorMaterial()) {
                 case CLOTH:
-                    return new ModelBeardLeather();
+                    return new ModelBeardLeather(color);
                 case IRON:
-                    return new ModelBeardIron();
+                    return new ModelBeardIron(color);
                 case GOLD:
-                    return new ModelBeardGold();
+                    return new ModelBeardGold(color);
                 case DIAMOND:
-                    int color = itemStack.getItem().getColorFromItemStack(itemStack, 0);
                     return new ModelBeardDiamond(color);
             }
         }
@@ -116,5 +116,23 @@ public class ItemBeard extends ItemArmor {
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamageForRenderPass(int par1, int par2) {
         return this.getIconFromDamage(par1);
+    }
+
+    @Override
+    public void func_82813_b(ItemStack par1ItemStack, int par2) {
+        NBTTagCompound nbttagcompound = par1ItemStack.getTagCompound();
+
+        if (nbttagcompound == null) {
+            nbttagcompound = new NBTTagCompound();
+            par1ItemStack.setTagCompound(nbttagcompound);
+        }
+
+        NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
+
+        if (!nbttagcompound.hasKey("display", 10)) {
+            nbttagcompound.setTag("display", nbttagcompound1);
+        }
+
+        nbttagcompound1.setInteger("color", par2);
     }
 }

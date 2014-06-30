@@ -76,6 +76,7 @@ public class ModelBeardDiamond extends ModelBiped {
         this.bipedHead.addChild(layer42);
         this.bipedHead.addChild(layer51);
     }
+
     private void setRotation(ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
