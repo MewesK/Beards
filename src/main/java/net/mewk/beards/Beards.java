@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
@@ -58,6 +59,7 @@ public class Beards {
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(beardDiamond, " h ", "w w", "www", 'w', Blocks.wool, 'h', Items.diamond_helmet));
 
         GameRegistry.addRecipe(new RecipesBeardDyes());
+        RecipeSorter.register("beardDyes", RecipesBeardDyes.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
     }
 
     @Mod.EventHandler
